@@ -1,0 +1,7 @@
+{
+  "message_id": "demo-003",
+  "from_email": "sam.rivera@example.com",
+  "subject": "quick question",
+  "body": "hey does your thing work with the other thing we use for reporting? someone on my team mentioned it might not be compatible but wasn't sure. let me know when you can",
+  "received_at": "2026-10-01T14:05:00Z"
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Support Inbox Automation Agent</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Support Inbox Automation Agent</h1>
+    <span class="connector-badge">Mailbox: <strong>{{ active_connector }}</strong></span>
+  </header>
+
+  {% if demo_mode %}
+  <div class="demo-banner">
+    Public demo mode — reads from a fixed set of sample emails and never sends real
+    email, regardless of what the UI shows as "sent". Fetches are rate-limited per visitor.
+  </div>
+  {% endif %}
+
+  <section class="actions-bar">
+    <button id="fetch-btn">Fetch new emails</button>
+    <span id="fetch-status"></span>
+  </section>
+
+  <table id="tickets-table">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>Subject</th>
+        <th>Intent</th>
+        <th>Urgency</th>
+        <th>Confidence</th>
+        <th>Status</th>
+        <th>Draft reply</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="tickets-tbody">
+      {% for t in tickets %}
+      <tr data-id="{{ t.id }}" class="status-{{ t.status }} {{ 'needs-human' if t.requires_human else '' }}">
+        <td>{{ t.from_email }}</td>
+        <td>{{ t.subject }}</td>
+        <td>{{ t.intent or '—' }}</td>
+        <td>{{ t.urgency or '—' }}</td>
+        <td>{{ "%.2f"|format(t.confidence) if t.confidence is not none else '—' }}</td>
+        <td class="status-cell">
+          {{ t.status }}
+          {% if t.requires_human_reason %}<div class="reason">{{ t.requires_human_reason }}</div>{% endif %}
+          {% if t.send_error %}<div class="reason error">{{ t.send_error }}</div>{% endif %}
+        </td>
+        <td class="draft-cell" contenteditable="true" data-field="draft_reply">{{ t.draft_reply or '' }}</td>
+        <td class="row-actions">
+          <button class="save-btn">Save</button>
+          <button class="approve-btn">Approve</button>
+          <button class="send-btn">Send</button>
+          <button class="reject-btn">Reject</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

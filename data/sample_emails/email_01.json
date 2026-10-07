@@ -1,0 +1,7 @@
+{
+  "message_id": "demo-001",
+  "from_email": "jordan.lee@example.com",
+  "subject": "Where do I find my API key?",
+  "body": "Hi, I just signed up for the Pro plan and I'm trying to connect our app but I can't find where to get an API key. Can you point me in the right direction? Thanks, Jordan",
+  "received_at": "2026-10-01T09:14:00Z"
+}

@@ -1,0 +1,7 @@
+{
+  "message_id": "demo-004",
+  "from_email": "morgan.t@example.com",
+  "subject": "Can't log in - password reset not working",
+  "body": "I tried resetting my password twice now using the link on the login page but I never get the email. I checked spam too. My account email is morgan.t@example.com if that helps. Would appreciate help getting back in.",
+  "received_at": "2026-10-01T16:30:00Z"
+}
